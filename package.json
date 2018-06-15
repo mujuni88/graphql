@@ -1,0 +1,11 @@
+{
+  "name": "graphql",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:mujuni88/graphql.git",
+  "author": "Joe Buza <joebm08@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon server/app.js"
+  }
+}
