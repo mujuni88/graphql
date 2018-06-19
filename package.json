@@ -7,5 +7,10 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon server/app.js"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint-plugin-arca": "^0.6.0",
+    "eslint-plugin-react": "^7.9.1"
   }
 }
