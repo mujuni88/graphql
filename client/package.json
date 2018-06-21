@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "apollo-boost": "^0.1.10",
+    "babel-preset-stage-0": "^6.24.1",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
     "react": "^16.4.1",
+    "react-apollo": "^2.1.6",
     "react-dom": "^16.4.1",
-    "react-scripts-parcel": "0.0.23",
-    "babel-preset-stage-0": "^6.24.1"
+    "react-scripts-parcel": "0.0.23"
   },
   "scripts": {
     "start": "react-scripts-parcel start",

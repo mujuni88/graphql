@@ -6,10 +6,13 @@
   "author": "Joe Buza <joebm08@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon server/app.js"
+    "server": "nodemon server/app.js",
+    "client": "cd client && yarn start",
+    "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
+    "concurrently": "^3.6.0",
     "eslint-plugin-arca": "^0.6.0",
     "eslint-plugin-react": "^7.9.1"
   }
