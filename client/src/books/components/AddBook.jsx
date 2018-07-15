@@ -8,6 +8,8 @@ import {
   getBooksQuery 
 } from '../../queries'
 import { 
+  Card, 
+  CardBody,
   Button, 
   Form, 
   FormGroup, 
@@ -72,38 +74,43 @@ class AddBook extends React.Component {
   render() {
     return (
       <div className="flex flex-col">
-        <Form onSubmit={this.handleOnSubmit}>
-          {map(input => {
-            if (input.type === 'select') {
-              return (
-                <FormGroup key={input.name}>
-                  <Label>{input.label}</Label>
-                  <Input
-                    type={input.type}
-                    name={input.name}
-                    value={this.state[input.name]}
-                    onChange={this.handleOnChange}
-                  >
-                    <option>Select author</option>
-                    {this.displayAuthors()}
-                  </Input>
-                </FormGroup>
-              )
-            }
-            return (
-              <FormGroup key={input.name}>
-                <Label>{input.label}</Label>
-                <Input
-                  type={input.type}
-                  name={input.name}
-                  value={this.state[input.name]}
-                  onChange={this.handleOnChange}
-                />
-              </FormGroup>
-            )
-          }, this.inputs)}
-          <Button color="primary">+ Add Book</Button>
-        </Form>
+        <h1>Add a Book</h1>
+        <Card className='mt-2'>
+          <CardBody>
+            <Form onSubmit={this.handleOnSubmit}>
+              {map(input => {
+                if (input.type === 'select') {
+                  return (
+                    <FormGroup key={input.name}>
+                      <Label>{input.label}</Label>
+                      <Input
+                        type={input.type}
+                        name={input.name}
+                        value={this.state[input.name]}
+                        onChange={this.handleOnChange}
+                      >
+                        <option>Select author</option>
+                        {this.displayAuthors()}
+                      </Input>
+                    </FormGroup>
+                  )
+                }
+                return (
+                  <FormGroup key={input.name}>
+                    <Label>{input.label}</Label>
+                    <Input
+                      type={input.type}
+                      name={input.name}
+                      value={this.state[input.name]}
+                      onChange={this.handleOnChange}
+                    />
+                  </FormGroup>
+                )
+              }, this.inputs)}
+              <Button color="primary">+ Add Book</Button>
+            </Form>
+          </CardBody>
+        </Card>
       </div>
     )
   }
