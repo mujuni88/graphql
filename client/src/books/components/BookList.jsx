@@ -1,44 +1,47 @@
-import React       from 'react'
-import Book        from './Book'
-import { gql }     from 'apollo-boost'
-import { graphql } from 'react-apollo'
-import map         from 'lodash/fp/map'
-
-const getBooksQuery = gql`
-  {
-    books {
-      name
-      genre
-      author {
-        name
-      }
-      id
-    }
-  }
-`
-
-const Thead = ({children}) => <div className='w-1/3 bold px-4 py-2'>{children}</div>
+import React           from 'react'
+import { graphql }     from 'react-apollo'
+import map             from 'lodash/fp/map'
+import {getBooksQuery} from '../../queries'
 
 class BookList extends React.Component {
-  render(){
-    const { loading, error, books } = this.props.data
+  displayContent = () => {
+    const { books = [] } = this.props.data
 
+    return map(book => <Book key={book.id} book={book} />, books)
+  }
+
+  displayLoading = () => {
+    const {loading} = this.props.data
+
+    return  loading && <div className='text-center px-4 py-2'>loading...</div>
+  }
+
+  displayError = () => {
+    const {error} = this.props.data
+
+    return error && <div className='text-red-darkest text-center px-4 py-2'>Error: {error}</div>
+  }
+
+  render(){
     return (
-      <div className='flex flex-col'>
-        <div className='flex flex-row p-1 w-full'>
-          <Thead>Name</Thead>
-          <Thead>Genre</Thead>
-          <Thead>Author</Thead>
-        </div>
+      <div className='flex flex-col mb-5'>
+        <h1>My Reading List</h1>
         <div className='w-full'>
-          {loading && <div className='text-center px-4 py-2'>loading...</div>}
-          {error && <div className='text-red-darkest text-center px-4 py-2'>Error: {error}</div>}
-          {books && map(b => <Book key={b.id} book={b} />, books)}
+          {this.displayLoading()}
+          {this.displayError()}
+          <ul>
+            {this.displayContent()}
+          </ul>
         </div>
       </div>
     )
   }
 }
+
+const Book = ({book}) => (
+  <li><b>{book.name}</b> by {book.author.name}</li>
+)
+
 
 
 export default graphql(getBooksQuery)(BookList)
